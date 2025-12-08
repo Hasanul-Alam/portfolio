@@ -38,7 +38,7 @@ export default function Navbar() {
               e.preventDefault();
               handleLinkClick("#home");
             }}
-            className="text-2xl font-bold bg-gradient-to-b from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-linear-to-b from-blue-500 to-purple-600 bg-clip-text text-transparent"
           >
             Hasanul Alam
           </a>
