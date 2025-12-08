@@ -134,9 +134,7 @@ export default function About() {
               key={index}
               className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 group"
             >
-              <div className="text-blue-400 mb-4 transform group-hover:scale-110 transition-transform">
-                {item.icon}
-              </div>
+              <div className="text-blue-400 mb-4">{item.icon}</div>
               <h4 className="text-xl font-semibold text-white mb-2">
                 {item.title}
               </h4>

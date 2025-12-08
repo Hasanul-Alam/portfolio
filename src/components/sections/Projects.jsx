@@ -79,12 +79,6 @@ export default function Projects() {
       id="projects"
       className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 "
     >
-      {/* Background Gradients */}
-      {/* <div className="absolute inset-0 bg-linear-to-br from-purple-900/20 via-transparent to-blue-900/20"></div>
-
-      <div className="absolute top-1/3 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/3 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div> */}
-
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">
@@ -95,18 +89,21 @@ export default function Projects() {
             Some of the projects I&apos;ve worked on recently
           </p>
         </div>
-
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setFilter(category)}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                 filter === category
                   ? "bg-blue-600 text-white shadow-lg scale-105"
-                  : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 backdrop-blur-sm border border-gray-700/50"
+                  : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 backdrop-blur-sm"
               }`}
+              style={{
+                borderWidth: 1,
+                borderColor: filter === category ? "transparent" : "#072436",
+              }}
             >
               {category}
             </button>

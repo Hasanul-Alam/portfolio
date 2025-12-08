@@ -47,14 +47,8 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 "
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
     >
-      {/* Background Gradients */}
-      {/* <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 via-transparent to-purple-900/20"></div>
-
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div> */}
-
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Section */}
@@ -89,7 +83,7 @@ export default function Hero() {
                 Get In Touch
               </a>
               <a
-                href="/resume.pdf"
+                href="https://docs.google.com/document/d/1NMbtPL7jGTvFFXxvoFu-JKoIzbjEcZWqHDpcDd0cmKs/export?format=pdf"
                 download
                 className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center gap-2 transition-colors justify-center"
               >

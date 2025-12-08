@@ -45,14 +45,8 @@ export default function Education() {
   return (
     <section
       id="education"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 bg-[#040a1c]"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
     >
-      {/* Background Gradients */}
-      <div className="absolute inset-0 bg-linear-to-br from-purple-900/20 via-transparent to-blue-900/20"></div>
-
-      <div className="absolute top-1/3 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/3 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">

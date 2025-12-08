@@ -114,11 +114,16 @@ export default function Skills() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 hover:cursor-pointer ${
                 activeCategory === category
                   ? "bg-blue-600 text-white shadow-lg scale-105"
-                  : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 backdrop-blur-sm border border-gray-700/50"
+                  : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 backdrop-blur-sm"
               }`}
+              style={{
+                borderWidth: 1,
+                borderColor:
+                  activeCategory === category ? "transparent" : "#072436",
+              }}
             >
               {category}
             </button>
