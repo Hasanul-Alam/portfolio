@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <div className="relative z-10">
           {children}
           <Toaster
-            position="top-right"
+            position="top-center"
             toastOptions={{
               duration: 3000,
               style: {

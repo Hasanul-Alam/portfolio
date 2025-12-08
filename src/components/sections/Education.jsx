@@ -70,7 +70,7 @@ export default function Education() {
               {education.map((edu) => (
                 <div
                   key={edu.id}
-                  className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 group"
+                  className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default transition-all duration-300 hover:-translate-y-2 group"
                 >
                   <div className="flex items-start gap-4">
                     <div className="text-blue-400 transform group-hover:scale-110 transition-transform">
@@ -110,9 +110,9 @@ export default function Education() {
               {certifications.map((cert) => (
                 <div
                   key={cert.id}
-                  className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 group"
+                  className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default transition-all duration-300 hover:-translate-y-2 group"
                 >
-                  <div className="text-blue-400 mb-4 transform group-hover:scale-110 transition-transform">
+                  <div className="text-blue-400 mb-4 transform transition-transform">
                     {cert.icon}
                   </div>
                   <h4 className="text-lg font-bold text-white mb-3 line-clamp-2">
@@ -136,7 +136,7 @@ export default function Education() {
           </div>
 
           {/* Learning Journey */}
-          <div className="mt-16 p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 text-center">
+          <div className="mt-16 p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default text-center">
             <div className="max-w-3xl mx-auto">
               <h3 className="text-2xl font-bold text-white mb-4">
                 Continuous Learning

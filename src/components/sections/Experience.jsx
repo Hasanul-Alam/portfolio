@@ -66,7 +66,7 @@ export default function Experience() {
 
                 {/* Content Card */}
                 <div className="ml-20">
-                  <div className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2">
+                  <div className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default transition-all duration-300 hover:-translate-y-2">
                     {/* Header */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
@@ -142,7 +142,7 @@ export default function Experience() {
           </div>
 
           {/* Additional Info */}
-          <div className="mt-12 p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 text-center">
+          <div className="mt-12 p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default text-center">
             <Briefcase className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-3">
               Looking for Opportunities

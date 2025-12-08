@@ -115,7 +115,7 @@ export default function Projects() {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 group overflow-hidden p-6"
+              className="bg-gray-800/50 backdrop-blur-sm rounded-lg border-default hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 group overflow-hidden p-6"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden rounded-lg mb-4 h-48">

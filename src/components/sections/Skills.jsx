@@ -165,7 +165,7 @@ export default function Skills() {
 
         {/* Always Learning Card */}
         <div className="mt-16 text-center">
-          <div className="max-w-3xl mx-auto p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50">
+          <div className="max-w-3xl mx-auto p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default">
             <h3 className="text-2xl font-bold text-white mb-4">
               Always Learning
             </h3>

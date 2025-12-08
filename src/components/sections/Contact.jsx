@@ -67,12 +67,6 @@ export default function Contact() {
       id="contact"
       className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 "
     >
-      {/* Background Gradients */}
-      {/* <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 via-transparent to-purple-900/20"></div>
-
-      <div className="absolute top-1/4 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div> */}
-
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">
@@ -100,26 +94,38 @@ export default function Contact() {
               {/* Contact Info Cards */}
               <div className="space-y-4 mb-8">
                 {contactInfo.map((item, index) => (
-                  <a
+                  <div
                     key={index}
-                    href={item.link}
-                    className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 group flex items-center gap-4"
+                    className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default flex items-center gap-4 hover:bg-gray-800/70 hover:cursor-pointer transition-all group"
+                    onClick={() => {
+                      // copy to clipboard for email and phone
+                      if (item.title === "Email" || item.title === "Phone") {
+                        navigator.clipboard
+                          .writeText(item.value)
+                          .then(() => {
+                            toast.success("Copied to clipboard!");
+                          })
+                          .catch((err) => {
+                            console.error("Failed to copy:", err);
+                          });
+                      }
+                    }}
                   >
-                    <div className="text-blue-400 transform group-hover:scale-110 transition-transform">
+                    <div className="text-blue-400 group-hover:text-blue-300 transition-colors">
                       {item.icon}
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-semibold text-white mb-1">
                         {item.title}
                       </h4>
                       <p className="text-gray-400 text-sm">{item.value}</p>
                     </div>
-                  </a>
+                  </div>
                 ))}
               </div>
 
               {/* Social Links */}
-              <div className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50">
+              <div className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default">
                 <h4 className="font-semibold text-white mb-4">
                   Connect with me
                 </h4>
@@ -157,7 +163,7 @@ export default function Contact() {
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700/50">
+            <div className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
@@ -173,7 +179,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400"
+                    className="w-full px-4 py-3 border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400 transition-all"
                     placeholder="John Doe"
                   />
                 </div>
@@ -192,7 +198,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400"
+                    className="w-full px-4 py-3 border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400 transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -211,7 +217,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400"
+                    className="w-full px-4 py-3 border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400 transition-all"
                     placeholder="Project Inquiry"
                   />
                 </div>
@@ -230,7 +236,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows="5"
-                    className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400 resize-none"
+                    className="w-full px-4 py-3 border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-700/50 text-white placeholder-gray-400 resize-none transition-all"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>

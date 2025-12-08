@@ -61,6 +61,23 @@ body {
   margin-right: auto;
 }
 
+/* I want to make a style of default border */
+.border-default {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(34, 57, 122);
+}
+
+.border-default:hover {
+  border-color: rgb(7, 53, 184);
+}
+
+.border-focus{
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(77, 119, 240);
+}
+
 /* Buttons */
 .btn-primary {
   background-color: var(--color-primary-600);
