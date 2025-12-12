@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client";
-import AdminDashboard from "@/components/backend/AnotherDemo";
-import AnotherDemo from "@/components/backend/AnotherDemo";
-import Demo from "@/components/backend/Demo";
+import AdminDashboard from "@/components/backend/AdminDashboard";
 import LoginPage from "@/components/backend/Login";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import React, { useEffect, useState } from "react";
