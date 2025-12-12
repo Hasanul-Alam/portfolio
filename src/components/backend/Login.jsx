@@ -5,7 +5,7 @@ import { Eye, EyeOff, Lock } from "lucide-react";
 import { useState } from "react";
 
 /* -------------------------- MAIN PAGE -------------------------- */
-export default function LoginPage() {
+export default function LoginPage({ onLoginSuccess }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -29,7 +29,7 @@ export default function LoginPage() {
       form.password === "HAP100%&8"
     ) {
       const authData = {
-        isLogginedIn: true,
+        isLoggedIn: true,
         role: "admin",
         validity: validity.toISOString(),
       };
@@ -38,7 +38,7 @@ export default function LoginPage() {
     }
     setTimeout(() => {
       setIsLoading(false);
-      window.location.href = "/admin";
+      onLoginSuccess();
     }, 1500);
   };
 

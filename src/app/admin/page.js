@@ -1,34 +1,47 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
+import AdminDashboard from "@/components/backend/AnotherDemo";
 import AnotherDemo from "@/components/backend/AnotherDemo";
 import Demo from "@/components/backend/Demo";
 import LoginPage from "@/components/backend/Login";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Admin = () => {
-  const { getItem, setItem, value } = useLocalStorage("authStatus", null);
-  const handleGetAuthStatus = () => {
-    const authStatus = getItem("authStatus");
-    console.log("Auth Status from localStorage:", authStatus);
-  };
-  handleGetAuthStatus();
+  const { value, setItem } = useLocalStorage("authStatus", null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
-  const setAuthStatus = () => {
-    const status = { isLoggedIn: true, user: "admin" };
-    setItem(status);
-  };
   useEffect(() => {
-    setAuthStatus();
-    console.log("value:", value);
-  }, []);
-  return (
-    <>
-      {/* <Demo />
-      <AnotherDemo /> */}
-      <LoginPage />
-    </>
-  );
+    console.log("value changed:", value);
+    // Check authentication status
+    if (value?.isLoggedIn) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+    setIsLoading(false); // Done loading after checking
+  }, [value]);
+
+  // Show loading state while checking auth
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  if (isLoggedIn) {
+    return (
+      <>
+        {/* <Demo /> */}
+        <AdminDashboard />
+      </>
+    );
+  } else {
+    return <LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />;
+  }
 };
 
 export default Admin;
