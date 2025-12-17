@@ -10,11 +10,12 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
+import axios from "axios";
 
 const SOCIAL_LINKS = {
-  github: "https://github.com/hasanul",
-  linkedin: "https://linkedin.com/in/hasanul",
-  email: "hasanul@example.com",
+  github: "https://github.com/Hasanul-Alam",
+  linkedin: "https://www.linkedin.com/in/md-hasanul-alam2/",
+  email: "hasanul.alam.professional@gmail.com",
 };
 
 export default function Hero() {
@@ -22,6 +23,18 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
+  const [heroData, setHeroData] = useState(null);
+
+  const handleGetHeroData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/hero");
+      console.log("hero response", response);
+      const data = response.data.data[0];
+      setHeroData(data);
+    } catch (error) {
+      console.error("Error fetching hero data:", error);
+    }
+  };
 
   const titles = [
     "React Native Developer",
@@ -54,6 +67,10 @@ export default function Hero() {
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
   }, [text, isDeleting, loopNum, typingSpeed]);
+
+  useEffect(() => {
+    handleGetHeroData();
+  }, []);
 
   return (
     <section
@@ -124,7 +141,7 @@ export default function Hero() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="https://docs.google.com/document/d/1NMbtPL7jGTvFFXxvoFu-JKoIzbjEcZWqHDpcDd0cmKs/export?format=pdf"
+                href={heroData ? heroData.cvLink : "#"}
                 download
                 className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm justify-center group"
               >
@@ -136,7 +153,7 @@ export default function Hero() {
             {/* Social Icons */}
             <div className="flex gap-4 justify-center lg:justify-start pt-4">
               <a
-                href={SOCIAL_LINKS.github}
+                href={heroData ? heroData.githubLink : SOCIAL_LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm transform hover:scale-110 hover:-translate-y-1 group"
@@ -144,19 +161,19 @@ export default function Hero() {
                 <Github className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
               </a>
               <a
-                href={SOCIAL_LINKS.linkedin}
+                href={heroData ? heroData.linkedinLink : SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm transform hover:scale-110 hover:-translate-y-1 group"
               >
                 <Linkedin className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors" />
               </a>
-              <a
+              {/* <a
                 href={`mailto:${SOCIAL_LINKS.email}`}
                 className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm transform hover:scale-110 hover:-translate-y-1 group"
               >
                 <Mail className="w-6 h-6 text-gray-400 group-hover:text-purple-400 transition-colors" />
-              </a>
+              </a> */}
             </div>
           </div>
 
