@@ -1,4 +1,6 @@
+import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 const { Plus, Edit2, Trash2 } = require("lucide-react");
 const {
   default: PrimaryButton,
@@ -45,9 +47,11 @@ function SkillCard({ name, progress, onClick }) {
 }
 
 const CreateSkillModal = ({ setIsOpen }) => {
+  const [loading, setLoading] = React.useState(false);
   const [formData, setFormData] = React.useState({
     skillType: "",
     skillName: "",
+    skillIcon: "",
     progress: 0,
   });
 
@@ -59,12 +63,25 @@ const CreateSkillModal = ({ setIsOpen }) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:5000/api/skills",
+        formData
+      );
+      console.log("Skill added successfully:", response.data);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Failed to add skill. Please try again.");
+    } finally {
+      setLoading(false);
+    }
     console.log("Form submitted:", formData);
     // Handle form submission here
     setIsOpen(false);
     // Reset form
-    setFormData({ skillType: "", skillName: "", progress: 0 });
+    setFormData({ skillType: "", skillName: "", skillIcon: "", progress: 0 });
   };
 
   return (
@@ -99,23 +116,26 @@ const CreateSkillModal = ({ setIsOpen }) => {
               <option value="" className="text-black">
                 Select a type
               </option>
-              <option value="technical" className="text-black">
+              {/* <option value="technical" className="text-black">
                 All
-              </option>
-              <option className="text-black" value="soft">
-                Languages
-              </option>
+              </option> */}
               <option className="text-black" value="language">
+                Language
+              </option>
+              <option className="text-black" value="framework">
                 Framework
               </option>
-              <option className="text-black" value="creative">
+              <option className="text-black" value="ui">
                 UI
               </option>
-              <option className="text-black" value="other">
+              <option className="text-black" value="backend">
                 Backend
               </option>
-              <option className="text-black" value="other">
+              <option className="text-black" value="state">
                 State
+              </option>
+              <option className="text-black" value="other">
+                Other
               </option>
             </select>
           </div>
@@ -132,6 +152,26 @@ const CreateSkillModal = ({ setIsOpen }) => {
               id="skillName"
               name="skillName"
               value={formData.skillName}
+              onChange={handleChange}
+              required
+              placeholder="e.g., React, Python, Communication"
+              className="w-full px-3 py-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* skill icon */}
+          <div>
+            <label
+              htmlFor="skillIcon"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Skill Icon
+            </label>
+            <input
+              type="text"
+              id="skillIcon"
+              name="skillIcon"
+              value={formData.skillIcon}
               onChange={handleChange}
               required
               placeholder="e.g., React, Python, Communication"
@@ -172,8 +212,9 @@ const CreateSkillModal = ({ setIsOpen }) => {
             <button
               onClick={handleSubmit}
               className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              disabled={loading}
             >
-              Add Skill
+              {loading ? "Adding..." : "Add Skill"}
             </button>
           </div>
         </div>
