@@ -175,8 +175,7 @@ export default function Skills() {
             <p className="text-gray-400">
               I believe in continuous learning and staying updated with the
               latest technologies. Currently exploring advanced React Native
-              patterns, GraphQL, and cloud technologies to enhance my skill set
-              further.
+              patterns to enhance my skill set further.
             </p>
           </div>
         </div>
