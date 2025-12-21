@@ -2,7 +2,7 @@ import React from "react";
 const { Plus, Edit2, Trash2 } = require("lucide-react");
 const {
   default: PrimaryButton,
-} = require("./reusableComponents/PrimaryButton");
+} = require("../reusableComponents/PrimaryButton");
 
 function ExperienceCard({
   title,

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Menu, X, Plus, Briefcase, LayoutGrid, Layers } from "lucide-react";
-import SkillsSection from "./adminDashboardComponents/SkillSection";
-import HeroSection from "./adminDashboardComponents/HeroSection";
-import ProjectsSection from "./adminDashboardComponents/ProjectSection";
-import ExperienceSection from "./adminDashboardComponents/ExperienceSection";
+import HeroSection from "./adminDashboardComponents/hero/HeroSection";
+import SkillsSection from "./adminDashboardComponents/skill/SkillSection";
+import ProjectsSection from "./adminDashboardComponents/projects/ProjectSection";
+import ExperienceSection from "./adminDashboardComponents/experience/ExperienceSection";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("hero");

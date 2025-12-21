@@ -1,10 +1,8 @@
 import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
+import PrimaryButton from "../reusableComponents/PrimaryButton";
 const { Plus, Edit2, Trash2 } = require("lucide-react");
-const {
-  default: PrimaryButton,
-} = require("./reusableComponents/PrimaryButton");
 
 function SkillCard({ name, progress, onClick }) {
   return (

@@ -28,7 +28,6 @@ export default function Hero() {
   const handleGetHeroData = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/hero");
-      console.log("hero response", response);
       const data = response.data.data[0];
       setHeroData(data);
     } catch (error) {
@@ -36,12 +35,7 @@ export default function Hero() {
     }
   };
 
-  const titles = [
-    "React Native Developer",
-    "Mobile App Developer",
-    "Full Stack Developer",
-    "UI/UX Enthusiast",
-  ];
+  const titles = ["Mobile App Developer", "Web Developer", "Tech Enthusiast"];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -124,10 +118,16 @@ export default function Hero() {
               Passionate Mobile App Developer specializing in high-performance,
               modern cross-platform applications. Currently crafting exceptional
               digital experiences at{" "}
-              <span className="text-blue-400 font-semibold">
-                Lancepilot LTD
-              </span>
-              .
+              <a
+                href="https://lancepilot.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                <span className="text-blue-400 font-semibold">
+                  Lancepilot LTD.
+                </span>
+              </a>
             </p>
 
             {/* Buttons */}

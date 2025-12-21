@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 const { Plus, Edit2, Trash2 } = require("lucide-react");
 const {
   default: PrimaryButton,
-} = require("./reusableComponents/PrimaryButton");
+} = require("../reusableComponents/PrimaryButton");
 
 function ProjectCard({
   title,
@@ -78,23 +80,33 @@ const CreateProjectModal = ({ setIsOpen }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-    // Handle form submission here
-    setIsOpen(false);
-    // Reset form
-    setFormData({
-      projectType: "",
-      image: "",
-      name: "",
-      description: "",
-      technologies: "",
-      duration: "",
-      liveLink: "",
-      codeLink: "",
-      playStoreLink: "",
-      appStoreLink: "",
-    });
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/projects",
+        formData
+      );
+      if (response.statusCode === 201) {
+        toast.success("Project added successfully!");
+        // close modal
+        setIsOpen(false);
+        // Reset form
+        setFormData({
+          projectType: "",
+          image: "",
+          name: "",
+          description: "",
+          technologies: "",
+          duration: "",
+          liveLink: "",
+          codeLink: "",
+          playStoreLink: "",
+          appStoreLink: "",
+        });
+      }
+    } catch {
+      toast.error("Failed to add project. Please try again.");
+    }
   };
 
   return (

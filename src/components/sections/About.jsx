@@ -77,12 +77,18 @@ export default function About() {
               <p>
                 I am a passionate Mobile App Developer currently working as a
                 Software Engineer at
-                <span className="text-blue-400 font-semibold">
+                <a
+                  href="https://lancepilot.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {" "}
-                  Lancepilot LTD
-                </span>
-                , where I contribute to building innovative mobile solutions
-                that make a difference.
+                  <span className="text-blue-400 font-semibold">
+                    Lancepilot LTD
+                  </span>
+                </a>{" "}
+                where I contribute to building innovative mobile solutions that
+                make a difference.
               </p>
 
               <p>
