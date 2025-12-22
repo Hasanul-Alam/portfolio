@@ -1,4 +1,6 @@
+import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 const { Plus, Edit2, Trash2 } = require("lucide-react");
 const {
   default: PrimaryButton,
@@ -67,21 +69,31 @@ const CreateExperienceModal = ({ setIsOpen }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-    // Handle form submission here
-    setIsOpen(false);
-    // Reset form
-    setFormData({
-      designation: "",
-      companyName: "",
-      startDate: "",
-      endDate: "",
-      currentlyWorking: false,
-      location: "",
-      responsibilities: "",
-      technologies: "",
-    });
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/experiences",
+        formData
+      );
+      if (response.data.statusCode === 201) {
+        toast.success("Experience added successfully!");
+        // close modal
+        setIsOpen(false);
+        // Reset form
+        setFormData({
+          designation: "",
+          companyName: "",
+          startDate: "",
+          endDate: "",
+          currentlyWorking: false,
+          location: "",
+          responsibilities: "",
+          technologies: "",
+        });
+      }
+    } catch {
+      toast.error("Failed to add experience. Please try again.");
+    }
   };
 
   return (
@@ -268,7 +280,7 @@ const CreateExperienceModal = ({ setIsOpen }) => {
             </button>
             <button
               onClick={handleSubmit}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors hover:cursor-pointer"
             >
               Add Experience
             </button>

@@ -1,47 +1,101 @@
 "use client";
 
+import axios from "axios";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Experience() {
-  const experiences = [
-    {
-      id: 1,
-      company: "Lancepilot LTD",
-      position: "Software Engineer (Mobile App Developer)",
-      location: "Niketon, Gulshan-1, Dhaka",
-      duration: "December 2024 - Present",
-      current: true,
-      website: "https://www.lancepilot.com",
-      responsibilities: [
-        'Contributed to the main mobile app "Linbox" with real-time chat integration via Meta API',
-        'Built marketplace app "Start-Startup" for software ideas marketplace',
-        'Developed email marketing app "Linmail" for campaign management',
-        'Contributed to subscription management system "Subsavely" with white labeling support',
-        "Implemented responsive UI and optimized performance for both Android and iOS platforms",
-        "Collaborated with cross-functional teams including designers and backend developers",
-      ],
-      technologies: [
-        "React Native",
-        "Expo",
-        "NativeWind",
-        "Redux",
-        "TypeScript",
-        "Next.js",
-      ],
-    },
-  ];
+  const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Transform API data to match component structure
+  const transformExperience = (apiExp) => {
+    // Format date duration
+    const formatDuration = (startDate, endDate, currentlyWorking) => {
+      const formatMonthYear = (dateStr) => {
+        const [year, month] = dateStr.split("-");
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return `${monthNames[parseInt(month) - 1]} ${year}`;
+      };
+
+      const start = formatMonthYear(startDate);
+      const end = currentlyWorking ? "Present" : formatMonthYear(endDate);
+      return `${start} - ${end}`;
+    };
+
+    return {
+      id: apiExp._id,
+      company: apiExp.companyName,
+      position: apiExp.designation,
+      location: apiExp.location,
+      duration: formatDuration(
+        apiExp.startDate,
+        apiExp.endDate,
+        apiExp.currentlyWorking
+      ),
+      current: apiExp.currentlyWorking,
+      website: apiExp.website || "https://www.lancepilot.com",
+      responsibilities: apiExp.responsibilities
+        .split(",")
+        .map((item) => item.trim())
+        .filter((item) => item.length > 0),
+      technologies: apiExp.technologies
+        .split(",")
+        .map((tech) => tech.trim())
+        .filter((tech) => tech.length > 0),
+    };
+  };
+
+  useEffect(() => {
+    const handleGetExperiences = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/experiences"
+        );
+        const data = response.data;
+        if (data.statusCode === 200) {
+          const transformedExperiences = data.data.map(transformExperience);
+          setExperiences(transformedExperiences);
+        }
+      } catch {
+        toast.error("Failed to fetch experiences");
+      } finally {
+        setLoading(false);
+      }
+    };
+    handleGetExperiences();
+  }, []);
+
+  if (loading) {
+    return (
+      <section
+        id="experience"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
+      >
+        <div className="text-white text-xl">Loading experience...</div>
+      </section>
+    );
+  }
 
   return (
     <section
       id="experience"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 "
+      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
     >
-      {/* Background Gradients */}
-      {/* <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 via-transparent to-purple-900/20"></div>
-
-      <div className="absolute top-1/4 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div> */}
-
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">

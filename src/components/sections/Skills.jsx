@@ -131,7 +131,7 @@ export default function Skills() {
             {filteredSkills.map((skill) => (
               <div
                 key={`${skill._id}`}
-                className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl hover:bg-gray-700 transition-transform transform hover:-translate-y-2 shadow-lg flex flex-col items-center justify-center group"
+                className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl hover:cursor-pointer transition-transform transform hover:-translate-y-2 shadow-lg flex flex-col items-center justify-center group border-default hover:border-blue-500/50"
               >
                 {/* Icon */}
                 <div className="mb-4 p-4 bg-gray-900 rounded-full  transition-colors">
@@ -168,7 +168,7 @@ export default function Skills() {
 
         {/* Always Learning Card */}
         <div className="mt-16 text-center">
-          <div className="max-w-3xl mx-auto p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border border-gray-700">
+          <div className="max-w-3xl mx-auto p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default">
             <h3 className="text-2xl font-bold text-white mb-4">
               Always Learning
             </h3>

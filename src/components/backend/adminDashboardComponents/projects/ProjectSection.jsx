@@ -86,7 +86,7 @@ const CreateProjectModal = ({ setIsOpen }) => {
         "http://localhost:5000/api/projects",
         formData
       );
-      if (response.statusCode === 201) {
+      if (response.data.statusCode === 201) {
         toast.success("Project added successfully!");
         // close modal
         setIsOpen(false);

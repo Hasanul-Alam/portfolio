@@ -1,83 +1,85 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ExternalLink, Github, Smartphone } from "lucide-react";
-
+import toast from "react-hot-toast";
 export default function Projects() {
   const [filter, setFilter] = useState("All");
-
-  const projects = [
-    {
-      id: 1,
-      title: "Linbox",
-      category: "Mobile App",
-      description:
-        "Mobile solution for Lancepilot with account management, real-time chat via Meta API, notifications, and dashboard statistics. Available on both App Store and Play Store.",
-      image: "https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=Linbox",
-      technologies: ["React Native", "Expo", "NativeWind", "Redux", "Meta API"],
-      liveLink: "https://play.google.com/store",
-      appStoreLink: "https://apps.apple.com",
-      duration: "4 months",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Start-Startups",
-      category: "E-Commerce",
-      description:
-        "Cross-platform e-commerce app for browsing, purchasing, investing, and preordering innovative software ideas. Built with TypeScript for scalability.",
-      image:
-        "https://via.placeholder.com/600x400/8B5CF6/FFFFFF?text=Start-Startups",
-      technologies: [
-        "React Native",
-        "Expo",
-        "React Native Paper",
-        "TypeScript",
-        "Redux",
-      ],
-      liveLink: "https://play.google.com/store",
-      githubLink: "#",
-      duration: "2 months",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Subsavely",
-      category: "Web App",
-      description:
-        "Subscription management system with white labeling support for businesses. Helps users track and manage recurring payments efficiently.",
-      image: "https://via.placeholder.com/600x400/10B981/FFFFFF?text=Subsavely",
-      technologies: ["Next.js", "React", "Tailwind CSS", "Redux"],
-      liveLink: "https://www.subsavely.com",
-      githubLink: "#",
-      duration: "2 months",
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Linmail",
-      category: "Mobile App",
-      description:
-        "Email marketing mobile application for managing campaigns and tracking performance on the go.",
-      image: "https://via.placeholder.com/600x400/F59E0B/FFFFFF?text=Linmail",
-      technologies: ["React Native", "Expo", "Redux"],
-      duration: "1.5 months",
-      featured: false,
-    },
-  ];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = ["All", "Mobile App", "Web App", "E-Commerce"];
+
+  // Map projectType from API to category
+  const getCategoryFromType = (projectType) => {
+    const typeMap = {
+      mobile: "Mobile App",
+      web: "Web App",
+      ecommerce: "E-Commerce",
+    };
+    return typeMap[projectType.toLowerCase()] || "Web App";
+  };
+
+  // Transform API data to match component structure
+  const transformProject = (apiProject) => {
+    return {
+      id: apiProject._id,
+      title: apiProject.name,
+      category: getCategoryFromType(apiProject.projectType),
+      description: apiProject.description,
+      image: apiProject.image,
+      technologies: apiProject.technologies
+        .split(",")
+        .map((tech) => tech.trim()),
+      liveLink: apiProject.liveLink || null,
+      githubLink: apiProject.codeLink || null,
+      playStoreLink: apiProject.playStoreLink || null,
+      appStoreLink: apiProject.appStoreLink || null,
+      duration: apiProject.duration,
+      featured: true, // You can add a featured field in your API if needed
+    };
+  };
 
   const filteredProjects =
     filter === "All"
       ? projects
       : projects.filter((project) => project.category === filter);
 
+  useEffect(() => {
+    const handleGetProjects = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/projects");
+        const data = await response.json();
+        if (data.statusCode === 200) {
+          const transformedProjects = data.data.map(transformProject);
+          setProjects(transformedProjects);
+        }
+      } catch (error) {
+        toast.error("Failed to fetch projects");
+      } finally {
+        setLoading(false);
+      }
+    };
+    handleGetProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <section
+        id="projects"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
+      >
+        <div className="text-white text-xl">Loading projects...</div>
+      </section>
+    );
+  }
+
   return (
     <section
       id="projects"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 "
+      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
     >
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Title */}
@@ -138,7 +140,7 @@ export default function Projects() {
                   <h3 className="text-xl font-bold text-white">
                     {project.title}
                   </h3>
-                  <span className="text-xs px-3 py-1 bg-blue-900/30 text-blue-400 rounded-full border border-blue-500/30">
+                  <span className="text-xs px-3 py-1 bg-blue-900/30 text-blue-400 rounded-full border-default">
                     {project.category}
                   </span>
                 </div>
@@ -173,17 +175,19 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
                     >
-                      {project.category === "Mobile App" ? (
-                        <>
-                          <Smartphone className="w-4 h-4" />
-                          View App
-                        </>
-                      ) : (
-                        <>
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
-                        </>
-                      )}
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </a>
+                  )}
+                  {project.playStoreLink && (
+                    <a
+                      href={project.playStoreLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+                    >
+                      <Smartphone className="w-4 h-4" />
+                      Play Store
                     </a>
                   )}
                   {project.appStoreLink && (

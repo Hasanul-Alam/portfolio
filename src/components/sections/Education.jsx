@@ -34,7 +34,7 @@ export default function Education() {
     },
     {
       id: 3,
-      title: "Fundamentals of PHP & Laravel",
+      title: "Fundamentals of PHP & Laravel Framework",
       issuer: "BITM - SEIP Project",
       date: "2022",
       website: "#",
@@ -149,13 +149,22 @@ export default function Education() {
                 best practices.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
-                <span className="px-4 py-2 bg-blue-900/30 text-blue-400 rounded-full text-sm font-medium border border-blue-500/30">
+                <span
+                  className="px-4 py-2 bg-blue-900/30 text-blue-400 rounded-full text-sm font-medium border"
+                  style={{ borderColor: "#5B5FFF" }}
+                >
                   Self-Learner
                 </span>
-                <span className="px-4 py-2 bg-purple-900/30 text-purple-400 rounded-full text-sm font-medium border border-purple-500/30">
+                <span
+                  className="px-4 py-2 bg-purple-900/30 text-purple-400 rounded-full text-sm font-medium border "
+                  style={{ borderColor: "#AC46FF" }}
+                >
                   Problem Solver
                 </span>
-                <span className="px-4 py-2 bg-green-900/30 text-green-400 rounded-full text-sm font-medium border border-green-500/30">
+                <span
+                  className="px-4 py-2 bg-green-900/30 text-green-400 rounded-full text-sm font-medium border border-green-500/30"
+                  style={{ borderColor: "#34D399" }}
+                >
                   Team Player
                 </span>
               </div>

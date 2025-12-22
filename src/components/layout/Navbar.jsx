@@ -27,10 +27,14 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
-      ${scrolled ? "bg-[#060f28]" : "bg-transparent"}`}
+      ${
+        scrolled
+          ? "bg-[#060f28]/95 backdrop-blur-lg shadow-lg"
+          : "bg-transparent"
+      }`}
     >
-      <div className="container-custom w-[90%] mx-auto">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
           {/* Logo */}
           <a
             href="#home"
@@ -38,7 +42,7 @@ export default function Navbar() {
               e.preventDefault();
               handleLinkClick("#home");
             }}
-            className="text-2xl font-bold bg-linear-to-b from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            className="text-lg sm:text-xl md:text-2xl font-bold bg-linear-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
           >
             Hasanul Alam
           </a>
