@@ -59,7 +59,7 @@ export default function About() {
             <div className="relative w-full aspect-square max-w-md mx-auto">
               <div className="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://i.ibb.co.com/k69z332v/IMG20240915152138.jpg"
+                  src="https://i.ibb.co.com/zVBPzJMP/FB-IMG-1766417122176.jpg"
                   alt="About Hasanul Alam"
                   className="w-full h-full object-cover"
                 />
