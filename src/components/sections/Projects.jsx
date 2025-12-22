@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import { ExternalLink, Github, Smartphone } from "lucide-react";
 import toast from "react-hot-toast";
+import EmptyState from "../common/EmptyState";
 export default function Projects() {
   const [filter, setFilter] = useState("All");
   const [projects, setProjects] = useState([]);
@@ -111,6 +112,14 @@ export default function Projects() {
             </button>
           ))}
         </div>
+
+        {filteredProjects.length === 0 && (
+          <EmptyState
+            title="No Projects Found"
+            description="There are no projects available at the moment. Please check back later."
+            icon="📁"
+          />
+        )}
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
