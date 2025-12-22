@@ -100,7 +100,7 @@ export default function Footer() {
                 href={SOCIAL_LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-800/50 backdrop-blur-sm rounded-lg hover:bg-blue-600 transition-colors border border-gray-700/50"
+                className="p-2 bg-gray-800/50 backdrop-blur-sm rounded-lg hover:bg-[#1c2e69] transition-colors border border-gray-700/50"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5 text-white" />
@@ -109,7 +109,7 @@ export default function Footer() {
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-800/50 backdrop-blur-sm rounded-lg hover:bg-blue-600 transition-colors border border-gray-700/50"
+                className="p-2 bg-gray-800/50 backdrop-blur-sm rounded-lg hover:bg-[#1c2e69] transition-colors border border-gray-700/50"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5 text-white" />

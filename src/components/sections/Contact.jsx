@@ -134,7 +134,7 @@ export default function Contact() {
                     href={SOCIAL_LINKS.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-700/50 rounded-lg hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 transform hover:scale-110"
+                    className="p-3 bg-gray-700/50 rounded-lg hover:bg-[#1c2e69] text-gray-300 hover:text-white transition-all duration-300 transform hover:scale-110"
                   >
                     <svg
                       className="w-6 h-6"
@@ -148,7 +148,7 @@ export default function Contact() {
                     href={SOCIAL_LINKS.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-700/50 rounded-lg hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 transform hover:scale-110"
+                    className="p-3 bg-gray-700/50 rounded-lg hover:bg-[#1c2e69] text-gray-300 hover:text-white transition-all duration-300 transform hover:scale-110"
                   >
                     <svg
                       className="w-6 h-6"

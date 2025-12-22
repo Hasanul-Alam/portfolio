@@ -27,7 +27,9 @@ export default function Hero() {
 
   const handleGetHeroData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/hero");
+      const response = await axios.get(
+        "https://portfolio-server-uuad.onrender.com/api/hero"
+      );
       const data = response.data.data[0];
       setHeroData(data);
     } catch (error) {

@@ -36,12 +36,15 @@ export default function HeroSection() {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:5000/api/hero", {
-        heroImage,
-        cvLink,
-        githubLink,
-        linkedinLink,
-      });
+      const response = await axios.post(
+        "https://portfolio-server-uuad.onrender.com/api/hero",
+        {
+          heroImage,
+          cvLink,
+          githubLink,
+          linkedinLink,
+        }
+      );
       if (response.statusCode === 201) {
         toast.success("Hero section data saved successfully");
         // Reset form fields

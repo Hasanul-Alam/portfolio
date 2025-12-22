@@ -65,7 +65,7 @@ const CreateSkillModal = ({ setIsOpen }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/skills",
+        "https://portfolio-server-uuad.onrender.com/api/skills",
         formData
       );
       console.log("Skill added successfully:", response.data);

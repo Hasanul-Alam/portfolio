@@ -68,8 +68,9 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-[#0c1022] border border-[#1d2337]"
+              className="p-2 rounded-lg bg-[#0c1022] border"
               aria-label="Toggle menu"
+              style={{ borderColor: "#1d2337" }}
             >
               {isOpen ? (
                 <X className="w-6 h-6 text-gray-300" />
@@ -82,7 +83,10 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 bg-[#0c1022] border border-[#1d2337] rounded-b-2xl shadow-xl">
+          <div
+            className="md:hidden py-4 bg-[#0c1022] border rounded-b-2xl shadow-xl"
+            style={{ borderColor: "#1d2337" }}
+          >
             <div className="flex flex-col space-y-4">
               {NAVIGATION_LINKS.map((link) => (
                 <a

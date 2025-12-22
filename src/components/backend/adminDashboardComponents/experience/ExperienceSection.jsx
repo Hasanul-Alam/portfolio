@@ -72,7 +72,7 @@ const CreateExperienceModal = ({ setIsOpen }) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/experiences",
+        "https://portfolio-server-uuad.onrender.com/api/experiences",
         formData
       );
       if (response.data.statusCode === 201) {

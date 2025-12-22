@@ -83,7 +83,7 @@ const CreateProjectModal = ({ setIsOpen }) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/projects",
+        "https://portfolio-server-uuad.onrender.com/api/projects",
         formData
       );
       if (response.data.statusCode === 201) {
