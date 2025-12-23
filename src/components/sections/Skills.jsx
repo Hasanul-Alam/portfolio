@@ -12,11 +12,13 @@ import {
   Palette,
   Figma,
 } from "lucide-react";
+import SkillsSkeleton from "../skeletons/SkillSkeleton";
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [skills, setSkills] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Map icon strings to actual icon components
   const getIconComponent = (iconString) => {
@@ -48,6 +50,7 @@ export default function Skills() {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(
           "https://portfolio-server-uuad.onrender.com/api/skills"
         );
@@ -63,6 +66,8 @@ export default function Skills() {
         console.error("Failed to fetch skills:", err);
         setError("Failed to load skills. Please try again later.");
         setSkills([]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -127,8 +132,10 @@ export default function Skills() {
           </div>
         )}
 
+        {isLoading && <SkillsSkeleton />}
+
         {/* Skills Grid */}
-        {filteredSkills.length > 0 ? (
+        {filteredSkills.length > 0 && !isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredSkills.map((skill) => (
               <div
