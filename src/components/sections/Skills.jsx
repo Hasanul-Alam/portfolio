@@ -12,7 +12,7 @@ import {
   Palette,
   Figma,
 } from "lucide-react";
-import SkillsSkeleton from "../skeletons/SkillSkeleton";
+import SkillsSkeleton from "../skeletons/SkillsSkeleton";
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState("All");
