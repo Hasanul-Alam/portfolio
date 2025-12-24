@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import {
   Code,
   Type,
-  Box,
-  Server,
   Database,
-  Terminal,
-  Layout,
-  Palette,
-  Figma,
+  MonitorSmartphone,
+  Atom,
+  Zap,
+  Server,
+  Braces,
+  LayoutGrid,
+  Github,
 } from "lucide-react";
 import SkillsSkeleton from "../skeletons/SkillsSkeleton";
 
@@ -25,13 +26,16 @@ export default function Skills() {
     const iconMap = {
       Code: <Code className="w-8 h-8 text-yellow-400" />,
       Type: <Type className="w-8 h-8 text-blue-500" />,
-      Box: <Box className="w-8 h-8 text-cyan-400" />,
-      Server: <Server className="w-8 h-8 text-green-500" />,
+      MonitorSmartphone: (
+        <MonitorSmartphone className="w-8 h-8 text-purple-400" />
+      ),
+      Atom: <Atom className="w-8 h-8 text-cyan-400" />,
+      Zap: <Zap className="w-8 h-8 text-red-400" />,
       Database: <Database className="w-8 h-8 text-green-400" />,
-      Terminal: <Terminal className="w-8 h-8 text-yellow-400" />,
-      Layout: <Layout className="w-8 h-8 text-white" />,
-      Palette: <Palette className="w-8 h-8 text-blue-400" />,
-      Figma: <Figma className="w-8 h-8 text-cyan-300" />,
+      Server: <Server className="w-8 h-8 text-gray-400" />,
+      Braces: <Braces className="w-8 h-8 text-pink-400" />,
+      LayoutGrid: <LayoutGrid className="w-8 h-8 text-indigo-400" />,
+      Github: <Github className="w-8 h-8 text-gray-400" />,
     };
 
     // Extract icon name from string like "<Code className=...>"
