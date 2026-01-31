@@ -4,13 +4,10 @@
 
 import { useEffect, useState } from "react";
 import { ExternalLink, Github, Smartphone } from "lucide-react";
-import toast from "react-hot-toast";
-import EmptyState from "../common/EmptyState";
-import ProjectsSkeleton from "../skeletons/ProjectsSkeleton";
+import { projectsData } from "@/utils/data/projectsData";
 export default function Projects() {
   const [filter, setFilter] = useState("All");
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const categories = ["All", "Mobile App", "Web App", "E-Commerce"];
 
@@ -40,7 +37,7 @@ export default function Projects() {
       playStoreLink: apiProject.playStoreLink || null,
       appStoreLink: apiProject.appStoreLink || null,
       duration: apiProject.duration,
-      featured: true, // You can add a featured field in your API if needed
+      featured: true,
     };
   };
 
@@ -50,24 +47,29 @@ export default function Projects() {
       : projects.filter((project) => project.category === filter);
 
   useEffect(() => {
-    const handleGetProjects = async () => {
-      try {
-        const response = await fetch(
-          "https://portfolio-server-uuad.onrender.com/api/projects"
-        );
-        const data = await response.json();
-        if (data.statusCode === 200) {
-          const transformedProjects = data.data.map(transformProject);
-          setProjects(transformedProjects);
-        }
-      } catch (error) {
-        toast.error("Failed to fetch projects");
-      } finally {
-        setLoading(false);
-      }
-    };
-    handleGetProjects();
+    const transformedProjects = projectsData.map(transformProject);
+    setProjects(transformedProjects);
   }, []);
+
+  // useEffect(() => {
+  //   const handleGetProjects = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://portfolio-server-uuad.onrender.com/api/projects"
+  //       );
+  //       const data = await response.json();
+  //       if (data.statusCode === 200) {
+  //         const transformedProjects = data.data.map(transformProject);
+  //         setProjects(transformedProjects);
+  //       }
+  //     } catch (error) {
+  //       toast.error("Failed to fetch projects");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   handleGetProjects();
+  // }, []);
 
   return (
     <section
@@ -104,16 +106,6 @@ export default function Projects() {
             </button>
           ))}
         </div>
-
-        {filteredProjects.length === 0 && !loading && (
-          <EmptyState
-            title="No Projects Found"
-            description="There are no projects available at the moment. Please check back later."
-            icon="📁"
-          />
-        )}
-
-        {loading && <ProjectsSkeleton />}
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

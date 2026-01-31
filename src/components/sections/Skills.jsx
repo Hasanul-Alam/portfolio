@@ -1,82 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  Code,
-  Type,
-  Database,
-  MonitorSmartphone,
-  Atom,
-  Zap,
-  Server,
-  Braces,
-  LayoutGrid,
-  Github,
-} from "lucide-react";
-import SkillsSkeleton from "../skeletons/SkillsSkeleton";
+import { useState } from "react";
+import { skillsData } from "@/utils/data/skillsData";
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [skills, setSkills] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Map icon strings to actual icon components
-  const getIconComponent = (iconString) => {
-    const iconMap = {
-      Code: <Code className="w-8 h-8 text-yellow-400" />,
-      Type: <Type className="w-8 h-8 text-blue-500" />,
-      MonitorSmartphone: (
-        <MonitorSmartphone className="w-8 h-8 text-purple-400" />
-      ),
-      Atom: <Atom className="w-8 h-8 text-cyan-400" />,
-      Zap: <Zap className="w-8 h-8 text-red-400" />,
-      Database: <Database className="w-8 h-8 text-green-400" />,
-      Server: <Server className="w-8 h-8 text-gray-400" />,
-      Braces: <Braces className="w-8 h-8 text-pink-400" />,
-      LayoutGrid: <LayoutGrid className="w-8 h-8 text-indigo-400" />,
-      Github: <Github className="w-8 h-8 text-gray-400" />,
-    };
-
-    // Extract icon name from string like "<Code className=...>"
-    const match = iconString?.match(/<(\w+)/);
-    const iconName = match ? match[1] : "Code";
-
-    return iconMap[iconName] || <Code className="w-8 h-8 text-gray-400" />;
-  };
+  const [skills, setSkills] = useState(skillsData || []);
 
   // Capitalize first letter for display
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-
-  // Fetch skills from API
-  useEffect(() => {
-    const fetchSkills = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(
-          "https://portfolio-server-uuad.onrender.com/api/skills"
-        );
-        const data = await response.json();
-
-        if (data.success && data.statusCode === 200) {
-          setSkills(data.data);
-          setError(null);
-        } else {
-          throw new Error(data.message || "Failed to fetch skills");
-        }
-      } catch (err) {
-        console.error("Failed to fetch skills:", err);
-        setError("Failed to load skills. Please try again later.");
-        setSkills([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchSkills();
-  }, []);
 
   // Get unique categories from skills data
   const categories = [
@@ -90,7 +24,7 @@ export default function Skills() {
       return skills;
     }
     return skills.filter(
-      (skill) => capitalize(skill.skillType) === activeCategory
+      (skill) => capitalize(skill.skillType) === activeCategory,
     );
   };
 
@@ -110,11 +44,6 @@ export default function Skills() {
           <p className="text-gray-400 text-lg">
             Technologies and tools I work with
           </p>
-          {error && (
-            <p className="text-red-500 text-sm mt-2 bg-red-500/10 py-2 px-4 rounded-lg inline-block">
-              ⚠️ {error}
-            </p>
-          )}
         </div>
 
         {/* Category Filter */}
@@ -136,10 +65,8 @@ export default function Skills() {
           </div>
         )}
 
-        {isLoading && <SkillsSkeleton />}
-
         {/* Skills Grid */}
-        {filteredSkills.length > 0 && !isLoading ? (
+        {filteredSkills.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredSkills.map((skill) => (
               <div
@@ -148,7 +75,8 @@ export default function Skills() {
               >
                 {/* Icon */}
                 <div className="mb-4 p-4 bg-gray-900 rounded-full  transition-colors">
-                  {skill.skillIcon && getIconComponent(skill.skillIcon)}
+                  {/* {skill.skillIcon && getIconComponent(skill.skillIcon)} */}
+                  {skill.skillIcon}
                 </div>
 
                 {/* Name */}

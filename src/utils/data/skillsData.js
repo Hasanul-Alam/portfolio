@@ -1,0 +1,77 @@
+const {
+  Zap,
+  Server,
+  Database,
+  Braces,
+  LayoutGrid,
+  Github,
+  Code,
+  FileCode,
+  Terminal,
+} = require("lucide-react");
+
+export const skillsData = [
+  {
+    _id: "694256b7c71b93d7bb8b0d97",
+    skillType: "framework",
+    skillName: "Next.js",
+    skillIcon: <Zap className="w-8 h-8 text-white" />,
+    progress: 85,
+  },
+  {
+    _id: "69495451d45b80a2c4deb560",
+    skillType: "backend",
+    skillName: "Node",
+    skillIcon: <Server className="w-8 h-8 text-cyan-300" />,
+    progress: 80,
+  },
+  {
+    _id: "694b390f6ad9d2550eec2e28",
+    skillType: "other",
+    skillName: "Mongodb",
+    skillIcon: <Database className="w-8 h-8 text-green-400" />,
+    progress: 85,
+  },
+  {
+    _id: "694b7103dd8fd276de110e1a",
+    skillType: "other",
+    skillName: "Restful API",
+    skillIcon: <Braces className="w-8 h-8 text-yellow-400" />,
+    progress: 90,
+  },
+  {
+    _id: "694b7154dd8fd276de110e1b",
+    skillType: "other",
+    skillName: "IOS & Android App Publish",
+    skillIcon: <LayoutGrid className="w-8 h-8 text-yellow-400" />,
+    progress: 95,
+  },
+  {
+    _id: "694b717add8fd276de110e1c",
+    skillType: "other",
+    skillName: "Git & Github",
+    skillIcon: <Github className="w-8 h-8 text-yellow-400" />,
+    progress: 90,
+  },
+  {
+    _id: "694c8a1f3e4b5c6d7a8b9c0d",
+    skillType: "language",
+    skillName: "JavaScript",
+    skillIcon: <Code className="w-8 h-8 text-yellow-500" />,
+    progress: 90,
+  },
+  {
+    _id: "694c8a2f3e4b5c6d7a8b9c0e",
+    skillType: "language",
+    skillName: "TypeScript",
+    skillIcon: <FileCode className="w-8 h-8 text-blue-500" />,
+    progress: 85,
+  },
+  {
+    _id: "694c8a3f3e4b5c6d7a8b9c0f",
+    skillType: "language",
+    skillName: "Python",
+    skillIcon: <Terminal className="w-8 h-8 text-blue-400" />,
+    progress: 75,
+  },
+];

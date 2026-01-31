@@ -1,15 +1,11 @@
 "use client";
 
-import axios from "axios";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { useState } from "react";
 import ExperienceSkeleton from "../skeletons/ExperienceSkeleton";
+import { experienceData } from "@/utils/data/experienceData";
 
 export default function Experience() {
-  const [experiences, setExperiences] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   // Transform API data to match component structure
   const transformExperience = (apiExp) => {
     // Format date duration
@@ -46,7 +42,7 @@ export default function Experience() {
       duration: formatDuration(
         apiExp.startDate,
         apiExp.endDate,
-        apiExp.currentlyWorking
+        apiExp.currentlyWorking,
       ),
       current: apiExp.currentlyWorking,
       website: apiExp.website || "https://www.lancepilot.com",
@@ -61,25 +57,10 @@ export default function Experience() {
     };
   };
 
-  useEffect(() => {
-    const handleGetExperiences = async () => {
-      try {
-        const response = await axios.get(
-          "https://portfolio-server-uuad.onrender.com/api/experiences"
-        );
-        const data = response.data;
-        if (data.statusCode === 200) {
-          const transformedExperiences = data.data.map(transformExperience);
-          setExperiences(transformedExperiences);
-        }
-      } catch {
-        toast.error("Failed to fetch experiences");
-      } finally {
-        setLoading(false);
-      }
-    };
-    handleGetExperiences();
-  }, []);
+  const [experiences, setExperiences] = useState(() =>
+    experienceData.map(transformExperience),
+  );
+  const [loading, setLoading] = useState(false);
 
   return (
     <section

@@ -1,47 +1,10 @@
 "use client";
 
+import { certificationsData } from "@/utils/data/certificationsData";
+import { educationsData } from "@/utils/data/educationsData";
 import { GraduationCap, Award, Calendar } from "lucide-react";
 
 export default function Education() {
-  const education = [
-    {
-      id: 1,
-      degree: "BSC In Physics",
-      institution: "Rajshahi Government City College",
-      board: "National University of Bangladesh",
-      status: "Appeared",
-      website: "https://www.nu.ac.bd",
-      icon: <GraduationCap className="w-8 h-8" />,
-    },
-  ];
-
-  const certifications = [
-    {
-      id: 1,
-      title: "Mobile App Development With React Native",
-      issuer: "Ostad",
-      date: "2023",
-      website: "https://www.ostad.app",
-      icon: <Award className="w-6 h-6" />,
-    },
-    {
-      id: 2,
-      title: "Professional MERN Stack Development",
-      issuer: "Programming Hero",
-      date: "2023",
-      website: "https://www.web.programming-hero.com",
-      icon: <Award className="w-6 h-6" />,
-    },
-    {
-      id: 3,
-      title: "Fundamentals of PHP & Laravel Framework",
-      issuer: "BITM - SEIP Project",
-      date: "2022",
-      website: "#",
-      icon: <Award className="w-6 h-6" />,
-    },
-  ];
-
   return (
     <section
       id="education"
@@ -67,7 +30,7 @@ export default function Education() {
             </h3>
 
             <div className="grid grid-cols-1 gap-6">
-              {education.map((edu) => (
+              {educationsData.map((edu) => (
                 <div
                   key={edu.id}
                   className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default transition-all duration-300 hover:-translate-y-2 group"
@@ -107,7 +70,7 @@ export default function Education() {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certifications.map((cert) => (
+              {certificationsData.map((cert) => (
                 <div
                   key={cert.id}
                   className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default transition-all duration-300 hover:-translate-y-2 group"

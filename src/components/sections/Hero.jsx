@@ -10,32 +10,12 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
-import axios from "axios";
-
-const SOCIAL_LINKS = {
-  github: "https://github.com/Hasanul-Alam",
-  linkedin: "https://www.linkedin.com/in/md-hasanul-alam2/",
-  email: "hasanul.alam.professional@gmail.com",
-};
 
 export default function Hero() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
-  const [heroData, setHeroData] = useState(null);
-
-  const handleGetHeroData = async () => {
-    try {
-      const response = await axios.get(
-        "https://portfolio-server-uuad.onrender.com/api/hero"
-      );
-      const data = response.data.data[0];
-      setHeroData(data);
-    } catch (error) {
-      console.error("Error fetching hero data:", error);
-    }
-  };
 
   const titles = ["Mobile App Developer", "Web Developer", "Tech Enthusiast"];
 
@@ -47,7 +27,7 @@ export default function Hero() {
       setText(
         isDeleting
           ? fullText.substring(0, text.length - 1)
-          : fullText.substring(0, text.length + 1)
+          : fullText.substring(0, text.length + 1),
       );
 
       setTypingSpeed(isDeleting ? 50 : 150);
@@ -63,10 +43,6 @@ export default function Hero() {
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
   }, [text, isDeleting, loopNum, typingSpeed]);
-
-  useEffect(() => {
-    handleGetHeroData();
-  }, []);
 
   return (
     <section
@@ -143,7 +119,9 @@ export default function Hero() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href={heroData ? heroData.cvLink : "#"}
+                href={
+                  "https://drive.google.com/uc?export=download&id=1O9qrffpaoIqK37lAOdVKn0fjcIY3YcAd"
+                }
                 download
                 className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm justify-center group"
               >
@@ -155,7 +133,7 @@ export default function Hero() {
             {/* Social Icons */}
             <div className="flex gap-4 justify-center lg:justify-start pt-4">
               <a
-                href={heroData ? heroData.githubLink : SOCIAL_LINKS.github}
+                href={"https://github.com/Hasanul-Alam"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm transform hover:scale-110 hover:-translate-y-1 group"
@@ -163,19 +141,13 @@ export default function Hero() {
                 <Github className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
               </a>
               <a
-                href={heroData ? heroData.linkedinLink : SOCIAL_LINKS.linkedin}
+                href={"https://www.linkedin.com/in/md-hasanul-alam2"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm transform hover:scale-110 hover:-translate-y-1 group"
               >
                 <Linkedin className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors" />
               </a>
-              {/* <a
-                href={`mailto:${SOCIAL_LINKS.email}`}
-                className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm transform hover:scale-110 hover:-translate-y-1 group"
-              >
-                <Mail className="w-6 h-6 text-gray-400 group-hover:text-purple-400 transition-colors" />
-              </a> */}
             </div>
           </div>
 
@@ -188,12 +160,12 @@ export default function Hero() {
               {/* Image container */}
               <div className="relative w-80 h-80 md:w-[400px] md:h-auto rounded-xl overflow-hidden border-2 border-white/10 shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
                 <img
-                  src="https://i.ibb.co/k69z332v/IMG20240915152138.jpg"
+                  src={
+                    "https://res.cloudinary.com/deurz4nfq/image/upload/v1769880120/hero-image_cimp90.jpg"
+                  }
                   alt="Hasanul Alam"
                   className="w-full h-full object-cover"
                 />
-                {/* Overlay gradient on hover */}
-                {/* <div className="absolute inset-0 bg-linear-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> */}
               </div>
 
               {/* Floating elements */}
