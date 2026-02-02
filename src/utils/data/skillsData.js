@@ -8,9 +8,19 @@ const {
   Code,
   FileCode,
   Terminal,
+  TabletSmartphone,
+  Atom,
 } = require("lucide-react");
 
 export const skillsData = [
+  // Add react native
+  {
+    _id: "694256a7c71b93d7bb8b0d96",
+    skillType: "framework",
+    skillName: "React Native",
+    skillIcon: <Atom className="w-8 h-8 text-white" />,
+    progress: 90,
+  },
   {
     _id: "694256b7c71b93d7bb8b0d97",
     skillType: "framework",
@@ -67,11 +77,11 @@ export const skillsData = [
     skillIcon: <FileCode className="w-8 h-8 text-blue-500" />,
     progress: 85,
   },
-  {
-    _id: "694c8a3f3e4b5c6d7a8b9c0f",
-    skillType: "language",
-    skillName: "Python",
-    skillIcon: <Terminal className="w-8 h-8 text-blue-400" />,
-    progress: 75,
-  },
+  // {
+  //   _id: "694c8a3f3e4b5c6d7a8b9c0f",
+  //   skillType: "language",
+  //   skillName: "Python",
+  //   skillIcon: <Terminal className="w-8 h-8 text-blue-400" />,
+  //   progress: 75,
+  // },
 ];
