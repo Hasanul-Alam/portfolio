@@ -120,7 +120,7 @@ export default function Hero() {
               </a>
               <a
                 href={
-                  "https://drive.google.com/uc?export=download&id=1Q8o7b0KnuMXZlesb7h5SgOQikbhvMZ9U"
+                  "https://drive.google.com/uc?export=download&id=1BqUU05jcf51s842V1PeaXVDT2JuPQFX9"
                 }
                 download
                 className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-semibold flex items-center gap-2 transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-sm justify-center group"
