@@ -1,5 +1,22 @@
 export const projectsData = [
   {
+    _id: "6948e7484aff98c2d4ce8fc7",
+    projectType: "mobile",
+    image:
+      "https://res.cloudinary.com/deurz4nfq/image/upload/v1782961021/Gemini_Generated_Image_auw23yauw23yauw2_c6zxop.png",
+    name: "Deligo Fleet Manager",
+    description:
+      "A fleet management app for tracking vehicles, managing fleets, and receiving push notifications.",
+    technologies: "React Native Expo, NativeWind, Zustand, Push Notification",
+    duration: "1.5 months",
+    liveLink: "",
+    codeLink: "",
+    playStoreLink:
+      "https://play.google.com/store/apps/details?id=com.deligo.fleetmanager&hl=en",
+    appStoreLink:
+      "https://apps.apple.com/us/app/deligo-fleet-manager/id6775438701",
+  },
+  {
     _id: "6948e7484aff98c2d4ce8fc8",
     projectType: "mobile",
     image:
@@ -11,8 +28,7 @@ export const projectsData = [
     duration: "4 months",
     liveLink: "",
     codeLink: "",
-    playStoreLink:
-      "https://play.google.com/store/apps/details?id=com.lancepilot.linbox&hl",
+    playStoreLink: "",
     appStoreLink: "https://apps.apple.com/us/app/linbox/id6751270919",
   },
   {

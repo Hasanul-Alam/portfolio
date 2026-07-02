@@ -1,6 +1,12 @@
 "use client";
 
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import {
+  Briefcase,
+  Calendar,
+  ChevronDown,
+  ChevronUp,
+  MapPin,
+} from "lucide-react";
 import { useState } from "react";
 import ExperienceSkeleton from "../skeletons/ExperienceSkeleton";
 import { experienceData } from "@/utils/data/experienceData";
@@ -9,26 +15,26 @@ export default function Experience() {
   // Transform API data to match component structure
   const transformExperience = (apiExp) => {
     // Format date duration
-    const formatDuration = (startDate, endDate, currentlyWorking) => {
-      const formatMonthYear = (dateStr) => {
-        const [year, month] = dateStr.split("-");
-        const monthNames = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ];
-        return `${monthNames[parseInt(month) - 1]} ${year}`;
-      };
+    const formatMonthYear = (dateStr) => {
+      const [year, month] = dateStr.split("-");
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      return `${monthNames[parseInt(month) - 1]} ${year}`;
+    };
 
+    const formatDuration = (startDate, endDate, currentlyWorking) => {
       const start = formatMonthYear(startDate);
       const end = currentlyWorking ? "Present" : formatMonthYear(endDate);
       return `${start} - ${end}`;
@@ -44,8 +50,10 @@ export default function Experience() {
         apiExp.endDate,
         apiExp.currentlyWorking,
       ),
+      // Keep the raw start date around so we can reliably sort by recency
+      startDate: apiExp.startDate,
       current: apiExp.currentlyWorking,
-      website: apiExp.website || "https://www.lancepilot.com",
+      website: apiExp.websiteLink || "",
       responsibilities: apiExp.responsibilities
         .split(",")
         .map((item) => item.trim())
@@ -58,9 +66,19 @@ export default function Experience() {
   };
 
   const [experiences, setExperiences] = useState(() =>
-    experienceData.map(transformExperience),
+    experienceData
+      .map(transformExperience)
+      // Most recent first: currently-working roles first, then by start date desc
+      .sort((a, b) => {
+        if (a.current !== b.current) return a.current ? -1 : 1;
+        return new Date(b.startDate) - new Date(a.startDate);
+      }),
   );
   const [loading, setLoading] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleExperiences = showAll ? experiences : experiences.slice(0, 1);
+  const hasMore = experiences.length > 1;
 
   return (
     <section
@@ -86,9 +104,9 @@ export default function Experience() {
 
             {loading && <ExperienceSkeleton />}
 
-            {experiences.length > 0 &&
+            {visibleExperiences.length > 0 &&
               !loading &&
-              experiences.map((exp) => (
+              visibleExperiences.map((exp) => (
                 <div
                   key={exp.id}
                   className="relative mb-8 sm:mb-10 md:mb-12 last:mb-0"
@@ -175,6 +193,28 @@ export default function Experience() {
                 </div>
               ))}
           </div>
+
+          {/* View All / Show Less toggle */}
+          {hasMore && !loading && (
+            <div className="flex justify-center mb-8 sm:mb-10 md:mb-12 mt-8">
+              <button
+                onClick={() => setShowAll((prev) => !prev)}
+                className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gray-800/50 hover:bg-gray-800 backdrop-blur-sm border-default text-white text-sm sm:text-base font-semibold rounded-lg transition-all duration-300"
+              >
+                {showAll ? (
+                  <>
+                    Show Less
+                    <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </>
+                ) : (
+                  <>
+                    View All Experience ({experiences.length})
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
 
           {/* Additional Info */}
           <div className="mt-8 sm:mt-10 md:mt-12 p-6 sm:p-7 md:p-8 bg-gray-800/50 backdrop-blur-sm rounded-lg border-default text-center">

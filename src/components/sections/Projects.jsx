@@ -51,26 +51,6 @@ export default function Projects() {
     setProjects(transformedProjects);
   }, []);
 
-  // useEffect(() => {
-  //   const handleGetProjects = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "https://portfolio-server-uuad.onrender.com/api/projects"
-  //       );
-  //       const data = await response.json();
-  //       if (data.statusCode === 200) {
-  //         const transformedProjects = data.data.map(transformProject);
-  //         setProjects(transformedProjects);
-  //       }
-  //     } catch (error) {
-  //       toast.error("Failed to fetch projects");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   handleGetProjects();
-  // }, []);
-
   return (
     <section
       id="projects"
